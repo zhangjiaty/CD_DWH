@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd">
+  <talendfile:ContextType xmi:id="_whYLsN70EeaiRIl87F_R3g" confirmationNeeded="false" name="Default">
+    <contextParameter xmi:id="_whYLsd70EeaiRIl87F_R3g" comment="" name="Source_DB_Host" prompt="context.Source_DB_Host" promptNeeded="true" type="id_String" value="&quot;54.225.198.238&quot;"/>
+    <contextParameter xmi:id="_whYLst70EeaiRIl87F_R3g" comment="" name="Source_DB_Port" prompt="context.Source_DB_Port" promptNeeded="true" type="id_String" value="&quot;3306&quot;"/>
+    <contextParameter xmi:id="_whYLs970EeaiRIl87F_R3g" comment="" name="Source_DB_Schema" prompt="context.Source_DB_Schema" promptNeeded="true" type="id_String" value="&quot;C2DEV_PLA&quot;"/>
+    <contextParameter xmi:id="_whYLtN70EeaiRIl87F_R3g" comment="" name="Source_DB_User" prompt="context.Source_DB_User" promptNeeded="true" type="id_String" value="&quot;cmcdwadmin&quot;"/>
+    <contextParameter xmi:id="_whYLtd70EeaiRIl87F_R3g" comment="" name="Source_DB_Password" prompt="context.Source_DB_Password" promptNeeded="true" type="id_String" value="&quot;dwhi$gr8&quot;"/>
+    <contextParameter xmi:id="_whYLtt70EeaiRIl87F_R3g" comment="" name="Target_DB_Host" prompt="context.Target_DB_Host" promptNeeded="true" type="id_String" value="&quot;54.225.198.238&quot;"/>
+    <contextParameter xmi:id="_whYLt970EeaiRIl87F_R3g" comment="" name="Target_DB_Port" prompt="context.Target_DB_Port" promptNeeded="true" type="id_String" value="&quot;3306&quot;"/>
+    <contextParameter xmi:id="_whYLuN70EeaiRIl87F_R3g" comment="" name="Target_DB_Schema" prompt="context.Target_DB_Schema" promptNeeded="true" type="id_String" value="&quot;C2DEV_PLA_DWH&quot;"/>
+    <contextParameter xmi:id="_whYLud70EeaiRIl87F_R3g" comment="" name="Target_DB_User" prompt="context.Target_DB_User" promptNeeded="true" type="id_String" value="&quot;cmcdwadmin&quot;"/>
+    <contextParameter xmi:id="_whYLut70EeaiRIl87F_R3g" comment="" name="Target_DB_Password" prompt="context.Target_DB_Password" promptNeeded="true" type="id_String" value="&quot;dwhi$gr8&quot;"/>
+    <contextParameter xmi:id="_whYLu970EeaiRIl87F_R3g" comment="" name="Source_DB_Params" prompt="Source_DB_Params?" promptNeeded="true" type="id_String" value=""/>
+    <contextParameter xmi:id="_whYLvN70EeaiRIl87F_R3g" comment="" name="Target_DB_Params" prompt="Target_DB_Params?" promptNeeded="true" type="id_String" value=""/>
+  </talendfile:ContextType>
+  <talendfile:ContextType xmi:id="_whYLvd70EeaiRIl87F_R3g" confirmationNeeded="false" name="Dev">
+    <contextParameter xmi:id="_whYLvt70EeaiRIl87F_R3g" comment="" name="Source_DB_Host" prompt="context.Source_DB_Host" promptNeeded="true" type="id_String" value="&quot;54.225.198.238&quot;"/>
+    <contextParameter xmi:id="_whYLv970EeaiRIl87F_R3g" comment="" name="Source_DB_Port" prompt="context.Source_DB_Port" promptNeeded="true" type="id_String" value="&quot;3306&quot;"/>
+    <contextParameter xmi:id="_whYLwN70EeaiRIl87F_R3g" comment="" name="Source_DB_Schema" prompt="context.Source_DB_Schema" promptNeeded="true" type="id_String" value="&quot;C2DEV_PLA&quot;"/>
+    <contextParameter xmi:id="_whYLwd70EeaiRIl87F_R3g" comment="" name="Source_DB_User" prompt="context.Source_DB_User" promptNeeded="true" type="id_String" value="&quot;cmcdwadmin&quot;"/>
+    <contextParameter xmi:id="_whYLwt70EeaiRIl87F_R3g" comment="" name="Source_DB_Password" prompt="context.Source_DB_Password" promptNeeded="true" type="id_String" value="&quot;dwhi$gr8&quot;"/>
+    <contextParameter xmi:id="_whYLw970EeaiRIl87F_R3g" comment="" name="Target_DB_Host" prompt="context.Target_DB_Host" promptNeeded="true" type="id_String" value="&quot;54.225.198.238&quot;"/>
+    <contextParameter xmi:id="_whYLxN70EeaiRIl87F_R3g" comment="" name="Target_DB_Port" prompt="context.Target_DB_Port" promptNeeded="true" type="id_String" value="&quot;3306&quot;"/>
+    <contextParameter xmi:id="_whYLxd70EeaiRIl87F_R3g" comment="" name="Target_DB_Schema" prompt="context.Target_DB_Schema" promptNeeded="true" type="id_String" value="&quot;C2DEV_PLA_DWH&quot;"/>
+    <contextParameter xmi:id="_whYLxt70EeaiRIl87F_R3g" comment="" name="Target_DB_User" prompt="context.Target_DB_User" promptNeeded="true" type="id_String" value="&quot;cmcdwadmin&quot;"/>
+    <contextParameter xmi:id="_whYLx970EeaiRIl87F_R3g" comment="" name="Target_DB_Password" prompt="context.Target_DB_Password" promptNeeded="true" type="id_String" value="&quot;dwhi$gr8&quot;"/>
+    <contextParameter xmi:id="_whYLyN70EeaiRIl87F_R3g" comment="" name="Source_DB_Params" prompt="Source_DB_Params?" promptNeeded="true" type="id_String" value=""/>
+    <contextParameter xmi:id="_whYLyd70EeaiRIl87F_R3g" comment="" name="Target_DB_Params" prompt="Target_DB_Params?" promptNeeded="true" type="id_String" value=""/>
+  </talendfile:ContextType>
+</xmi:XMI>

@@ -1,0 +1,300 @@
+package routines;
+
+import java.util.Calendar;
+import java.util.Random;
+import java.util.Date;
+import java.util.UUID;
+import java.security.MessageDigest;
+import java.math.BigInteger;
+
+
+public class TBEDataGenerator {
+
+	private static Random random = new Random();
+    
+	public static int getKey(int maxKey) {
+        return random.nextInt(maxKey);
+    }
+
+	public static String getPersonGender(boolean allowUnknown) {
+		String[] maleList = { "Male", "Male", "Male", "Male", "Male", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				  			  "Male", "Male", "Male", "Male", "Male", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				  			  "Male", "Male", "Male", "Male", "Male", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				  			  "Male", "Male", "Male", "Male", "Male", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							  "Unknown" }; //$NON-NLS-1$
+
+		String[] femaleList = { "Female", "Female", "Female", "Female", "Female", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+			    				"Female", "Female", "Female", "Female", "Female", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+			    				"Female", "Female", "Female", "Female", "Female", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+			    				"Female", "Female", "Female", "Female", "Female", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+								"Unknown" }; //$NON-NLS-1$
+	
+		if(getKey(2) == 0) { // Male
+			if(allowUnknown == false) return "Male";
+			else return maleList[getKey(maleList.length)];
+		}
+		else { // Female
+			if(allowUnknown == false) return "Female";
+			else return femaleList[getKey(femaleList.length)];
+		}
+	}
+		
+	public static String getPersonGender() {
+			return getPersonGender(false);
+	}
+	
+	public static String getPersonTitle(String gender) {
+		String[] maleList = { "Mr", "Mr", "Mr", "Mr", "Mr", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							  "Mr", "Mr", "Mr", "Mr", "Mr", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							  "Dr" }; //$NON-NLS-1$
+		String[] femaleList = { "Mrs", "Mrs", "Mrs", "Mrs", "Mrs", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							    "Mrs", "Mrs", "Mrs", "Mrs", "Mrs", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							    "Miss", "Miss", "Miss", "Miss", "Miss", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							    "Miss", "Miss", "Miss", "Miss", "Miss", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							    "Dr", //$NON-NLS-1$
+							    "Ms", "Ms", "Ms", "Ms", "Ms", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+							    "Ms", "Ms", "Ms", "Ms", "Ms" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		
+		if("Male".equals(gender)) return maleList[getKey(maleList.length)];
+		if("Female".equals(gender)) return femaleList[getKey(femaleList.length)];
+		else return "Unknown";
+	}
+	
+    /**
+     * {talendTypes} String
+     * 
+     * {Category} TBEDataGenerator
+     * 
+     * {example} getPersonFirstName(String gender) # Harry.
+     */
+    public static String getPersonFirstName(String gender) {
+        String[] maleList = { "Harry", "Jack", "Oliver", "Charlie", "James", "George", "Thomas", "Ethan", "Jacob", "William", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Daniel", "Joshua", "Max", "Noah", "Alfie", "Samuel", "Dylan", "Oscar", "Lucas", "Aidan", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Isaac", "Riley", "Henry", "Benjamin", "Joseph", "Alexander", "Lewis", "Leo", "Tyler", "Jayden", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Zac", "Freddie", "Archie", "Logan", "Adam", "Ryan", "Nathan", "Matthew", "Sebastian", "Jake", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Toby", "Alex", "Luke", "Liam", "Harrison", "David", "Jamie", "Edward", "Luca", "Elliot", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Aaron", "Finley", "Michael", "Zachary", "Mason", "Sam", "Muhammad", "Connor", "Ben", "Reuben", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Theo", "Ryhs", "Arthur", "Caleb", "Dexter", "Rory", "Jenson", "Evan", "Gabriel", "Ewan", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Callum", "Seth", "Felix", "Austin", "Owen", "Leon", "Cameron", "Jude", "Harley", "Blake", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Harvey", "Tom", "Hugo", "Finn", "Bobby", "Hayden", "Kyle", "Jasper", "Tommy", "Eli", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Kian", "Andrew", "John", "Louie", "Dominic", "Joe", "Elijan", "Kai", "Frankie", "Stanley" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        String[] femaleList = { "Amelia", "Lily", "Emily", "Sophia", "Isabelle", "Sophie", "Olivia", "Jessica", "Chloe", "Mia", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Isla", "Isabella", "Ava", "Charlotte", "Grace", "Evie", "Poppy", "Lucy", "Ella", "Holly", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Emma", "Molly", "Annabelle", "Erin", "Freya", "Ruby", "Scarlett", "Alice", "Layla", "Hannah", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Eva", "Imogen", "Millie", "Daisy", "Abigail", "Amy", "Zoe", "Megan", "Maisie", "Phoebe", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Maya", "Anna", "Eliza", "Caitlin", "Amelie", "Jasmine", "Florence", "Sienna", "Madison", "Eleanor", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Darcey", "Lola", "Elizabeth", "Leah", "Matilda", "Summer", "Elsie", "Ellie", "Zara", "Rosie", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Kayla", "Esme", "Amber", "Georgia", "Bethany", "Rose", "Evelyn", "Lexi", "Niamh", "Katie", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Alyssa", "Lauren", "Heidi", "Gracie", "Skye", "Willow", "Faith", "Beth", "Alexandra", "Iris", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Harriet", "Violet", "Lara", "Martha", "Rebecca", "Seren", "Gabriella", "Tilly", "Naomi", "Sarah", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Clara", "Nicole", "Elise", "Mila", "Annie", "Sara", "Bella", "Francesca", "Elena", "Libby" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+      
+		if("Male".equals(gender)) return maleList[getKey(getKey(maleList.length) + 1)];
+		if("Female".equals(gender)) return femaleList[getKey(getKey(femaleList.length) + 1)];
+		else return "Unknown";		
+    }
+
+    /**
+     * {talendTypes} String
+     * 
+     * {Category} TBEDataGenerator
+     * 
+     * {example} getPersonFirstName() # Harry.
+     */
+    public static String getPersonFirstName() {
+    	return getPersonFirstName(getPersonGender(false));
+    }
+    
+    /**
+     * {talendTypes} String
+     * 
+     * {Category} TalendDataGenerator
+     * 
+     * {example} getPersonLastName() # Smith.
+     */
+    public static String getPersonLastName() {
+        String[] list = { "Smith", "Jones", "Taylor", "Williams", "Brown", "Davies", "Evans", "Wilson", "Thomas", "Roberts", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Johnson", "Lewis", "Walker", "Robinson", "Wood", "Thompson", "White", "Watson", "Jackson", "Wright", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Green", "Harris", "Cooper", "King", "Lee", "Martin", "Clarke", "James", "Morgan", "Hughes", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Edwards", "Hill", "Moore", "Clark", "Harrison", "Scott", "Young", "Morris", "Hall", "Ward", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Turner", "Carter", "Phillips", "Mitchell", "Patel", "Adams", "Campbell", "Anderson", "Allen", "Cook", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Bailey", "Parker", "Miller", "Davis", "Murphy", "Price", "Bell", "Baker", "Griffiths", "Kelly", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Simpson", "Marshall", "Collins", "Bennett", "Cox", "Richardson", "Fox", "Gray", "Rose", "Chapman", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Hunt", "Robertson", "Shaw", "Reynolds", "Lloyd", "Ellis", "Richards", "Russell", "Wilkinson", "Khan", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Graham", "Stewart", "Reid", "Murray", "Powell", "Palmer", "Holmes", "Rogers", "Stevens", "Walsh", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Hunter", "Thomson", "Matthews", "Ross", "Owen", "Mason", "Knight", "Kennedy", "Butler", "Saunders", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Cole", "Pearce", "Dean", "Foster", "Harvey", "Hudson", "Gibson", "Mills", "Berry", "Barnes", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Pearson", "Kaur", "Booth", "Dixon", "Grant", "Gordon", "Lane", "Harper", "Ali", "Hart", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Mcdonald", "Brooks", "Ryan", "Carr", "Macdonald", "Hamilton", "Johnston", "West", "Gill", "Dawson", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Armstrong", "Gardner", "Stone", "Andrews", "Williamson", "Barker", "George", "Fisher", "Cunningham", "Watts", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Webb", "Lawrence", "Bradley", "Jenkins", "Wells", "Chambers", "Spencer", "Poole", "Atkinson", "Lawson", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Day", "Woods", "Rees", "Fraser", "Black", "Fletcher", "Hussain", "Willis", "Marsh", "Ahmed", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Doyle", "Lowe", "Burns", "Hopkins", "Nicholson", "Parry", "Newman", "Jordan", "Henderson", "Howard", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Barrett", "Burton", "Riley", "Porter", "Byrne", "Houghton", "John", "Perry", "Baxter", "Ball", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Mccarthy", "Elliott", "Burke", "Gallagher", "Duncan", "Cooke", "Austin", "Read", "Wallace", "Hawkins", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Hayes", "Francis", "Sutton", "Davidson", "Sharp", "Holland", "Moss", "May", "Bates", "Morrison", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Bob", "Oliver", "Kemp", "Page", "Arnold", "Shah", "Stevenson", "Ford", "Potter", "Flynn", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Warren", "Kent", "Alexander", "Field", "Freeman", "Begum", "Rhodes", "Middleton", "Payne", "Stephenson", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Pritchard", "Gregory", "Bond", "Webster", "Dunn", "Donnelly", "Lucas", "Long", "Jarvis", "Cross", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Stephens", "Reed", "Coleman", "Nicholls", "Bull", "Bartlett", "Beattie", "Curtis", "Bird", "Patterson", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Tucker", "Bryant", "Lynch", "Mackenzie", "Ferguson", "Cameron", "Lopez", "Haynes", "Bolton", "Hardy", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Heath", "Davey", "Rice", "Jacobs", "Parsons", "Ashton", "Robson", "French", "Farrell", "Walton", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Gilbert", "Mcintyre", "Newton", "Norman", "Higgins", "Hodgson", "Sutherland", "Kay", "Bishop", "Burgess", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+        		"Simmons", "Hutchinson", "Moran", "Frost", "Sharma", "Slater", "Greenwood", "Kirk", "Fernandez", "Garcia" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+
+		return list[getKey(getKey(list.length) + 1)];
+    }
+    
+    public static String getPersonSalutation(String title, String firstName, String lastName) {
+    	if(getKey(2) == 0) { // Formal
+    		if(title == null || lastName == null) return "Unknown";
+    		else return "Dear " + title + " " + lastName;
+    	}
+    	else { // Informal
+    		if(firstName == null) return "Unknown";
+    		else return "Dear " + firstName;
+    	}
+    }
+    
+    public static Date getPersonDateOfBirth() {
+               Calendar cal = Calendar.getInstance();  
+               cal.add(Calendar.DAY_OF_MONTH, ((getKey((65 + 18) * 365) + (18 * 365)) * -1));  
+               Date dOB = new Date(cal.getTimeInMillis());  
+               return dOB;
+    }
+    
+    public static String getPersonEmailAddress(String firstName, String lastName) {
+    	String[] tLD = { "com", "com", "com", "com", "com", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+ 		 		 		 "com", "com", "com", "com", "com", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+ 		 		 		 "com", "com", "com", "com", "com", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+ 		 		 		 "com", "com", "com", "com", "com", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		  		 		 "co.uk", "co.uk", "co.uk", "co.uk", "co.uk", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		  		 		 "co.uk", "co.uk", "co.uk", "co.uk", "co.uk", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		  		 		 "co.uk", "co.uk", "co.uk", "co.uk", "co.uk", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		  		 		 "co.uk", "co.uk", "co.uk", "co.uk", "co.uk", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				  		 "org", "net" }; //$NON-NLS-1$ //$NON-NLS-2$
+    	
+    	if(firstName == null) {
+    		if(lastName == null) return getPersonFirstName() + "." + getPersonLastName() + getKey(999) + "@" + "tbemailhost" + getKey(999) + "." + tLD[getKey(tLD.length)];
+    		else return lastName + getKey(999) + "@" + "tbemailhost" + getKey(999) + "." + tLD[getKey(tLD.length)];
+    	}
+    	else if(lastName == null) {
+    		return firstName + getKey(999) + "@" + "tbemailhost" + getKey(999) + "." + tLD[getKey(tLD.length)];
+    	}
+    	else {
+    		return firstName + "." + lastName + getKey(999) + "@" + "tbemailhost" + getKey(999) + "." + tLD[getKey(tLD.length)];	
+    	}
+    }
+    
+    public static String getUUID() {
+    	return UUID.randomUUID().toString();
+    }
+    
+    public static String getPassword() {
+    	String[] list = { "monkey", "Monkey", "mONKEY", "m0nkey", "monk3y" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    	
+    	return list[getKey(list.length)] + getKey(999);
+    }
+    
+    public static String getPasswordSalt() {
+    	return getUUID();
+    }
+    
+    public static String getMD5HashedPassword(String password, String salt) {
+    	String sTH;
+    	if(password == null) {
+    		if(salt == null) sTH = "";
+    		else sTH = salt;
+    	}
+    	else {
+    		if(salt == null) sTH = password;
+    		else sTH = password + salt;
+    	}
+    	
+    	try {
+    		MessageDigest md5 = MessageDigest.getInstance("SHA-256");
+    		md5.update(sTH.getBytes());
+    		BigInteger hash = new BigInteger(1, md5.digest());
+    		return hash.toString(16);
+    	} 
+    	catch (Exception e) {
+    		return null;
+    	}
+    }
+    
+    public static String getAddressStreet() {
+    	String[] nameList = { "Aire", "Avon", "Bann", "Barrow", "Blackwater", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Boyne", "Clyde", "Dee", "Don", "Eden", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Erne", "Great", "Lee", "Liffey", "Medway", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Mersey", "Nene", "Nore", "Ribble", "Severn", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Shannon", "Spey", "Suir", "Tay", "Tees", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Teme", "Thames", "Trent", "Tweed", "Tyne", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Albert", "Alexander", "Chester", "Church", "George", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Grange", "Green", "Grove", "High", "Highfield", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "King", "Kings", "Kingsway", "London", "Main", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Manchester", "Manor", "Mill", "New", "North", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Park", "Queen", "Queens", "Richmond", "School", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "South", "Springfield", "St. John's", "Stanley", "Station", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   "Victoria", "West", "Windsor", "York", "Fuscia" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						   
+    						   
+    	String[] typeList = { "Street", "Close", "Avenue", "Road", "Crescent", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Square", "Lane" }; //$NON-NLS-1$ //$NON-NLS-2$
+    	
+    	return (getKey(199) + 1) + " " + nameList[getKey(nameList.length)] + " " + typeList[getKey(typeList.length)];
+    }
+    
+    public static String getAddressTown() {
+    	String[] townList = { "Ampthill", "Arlesey", "Bedford", "Biggleswade", "Dunstable", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Flitwick", "Houghton Regis", "Kempston", "Leighton Buzzard", "Linslade", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Luton", "Potton", "Sandy", "Shefford", "Stotfold", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Wixams", "Woburn", "Ascot", "Bracknell", "Crowthorne", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Earley", "Eton", "Hungerford", "Lambourn", "Maidenhead", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Newbury", "Reading", "Sandhurst", "Slough", "Thatcham", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Windsor", "Wokingham", "Woodley", "Bristol", "Amersham", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Aylesbury", "Beaconsfield", "Bletchley", "Buckingham", "Chesham", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Fenny Stratford", "High Wycombe", "Marlow", "Milton Keynes", "Newport Pagnell", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Olney", "Princes Risborough", "Stony Stratford", "Wendover", "Winslow", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Woburn Sands", "Wolverton and Greenleys", "Cambridge", "Chatteris", "Ely", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Fulbourn", "Godmanchester", "Hanley Grange", "Huntingdon", "March", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Northstowe", "Peterborough", "Ramsey", "Soham", "St Ives", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "St Neots", "Whittlesey", "Wisbech", "Alsager", "Birchwood", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Bollington", "Chester", "Congleton", "Crewe", "Ellesmere Port", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Frodsham", "Knutsford", "Macclesfield", "Malpas", "Middlewich", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Nantwich", "Neston", "Northwich", "Poynton with Worth", "Runcorn", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Sandbach", "Warrington", "Widnes", "Wilmslow", "Winsford", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Bodmin", "Bude", "Callington", "Camborne", "Camelford", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    						  "Charlestown", "Falmouth", "Fowey", "Hayle", "Helston" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    	
+    	return townList[getKey(townList.length)];
+    }
+    
+    public static String getAddressCounty() {
+    	String[] countyList = { "Bedfordshire", "Berkshire", "Bristol", "Buckinghamshire", "Cambridgeshire", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Cheshire", "Cornwall", "Cumbria", "Derbyshire", "Devon", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Dorset", "Durham", "East Riding of Yorkshire", "East Sussex", "Essex", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Gloucestershire", "Hampshire", "Hereford and Worcester", "Hertfordshire", "Isle of Man", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Isle of Wight", "Kent", "Lancashire", "Leicestershire", "Lincolnshire", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"London", "Manchester", "Merseyside", "Middlesex", "Norfolk", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"North Yorkshire", "Northamptonshire", "Northumberland", "Nottinghamshire", "Oxfordshire", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Rutland", "Shropshire", "Somerset", "South Yorkshire", "Staffordshire", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Suffolk", "Surrey", "Tyne and Wear", "Warwickshire", "West Midlands", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"West Sussex", "West Yorkshire", "Wiltshire", "County Antrim", "County Armagh", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"County Down", "County Fermanagh", "County Londonderry", "County Tyrone", "Aberdeenshire", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Angus", "Argyll and Bute", "Ayrshire", "Clackmannanshire", "Dumfries and Galloway", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Dunbartonshire", "Dundee", "East Lothian", "Edinburgh", "Fife", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Glasgow", "Highland", "Lanarkshire", "Midlothian", "Moray", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Orkney", "Perth and Kinross", "Renfrewshire", "Scottish Borders", "Shetland Isles", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Stirling", "West Lothian", "Western Isles", "Anglesey/Sir Fon", "Blaenau Gwent", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Caerphilly", "Cardiff", "Carmarthenshire", "Ceredigion", "Conwy", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Denbighshire", "Flintshire", "Glamorgan", "Gwynedd", "Merthyr Tydfil", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    							"Monmouthshire", "Neath Port Talbot", "Newport", "Pembrokeshire", "Powys" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    	    	
+    	return countyList[getKey(countyList.length)];
+    }
+    
+    public static String getAddressPostcode(String county) {
+    	if(county == null || county.length() < 4) return null;
+    	else return county.substring(0, 2).toUpperCase() + (getKey(99) + 1) + " " + getKey(10) + county.substring(2, 4).toUpperCase();
+    }
+}
